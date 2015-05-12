@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
+
+  #Routing subdomains
+  match '/', to: 'home#shop', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
+
+  get 'users/registration' => 'users#registration'
   devise_for :users
+  resources :users, :only => [:show]
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
