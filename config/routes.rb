@@ -1,17 +1,38 @@
 Rails.application.routes.draw do
 
-  #Routing subdomains
-  match '/', to: 'home#shop', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
 
-  get 'users/registration' => 'users#registration'
+  #Routing subdomains
+  match 'index', to: 'home#shop', constraints: {subdomain: /.+/}, via: [:get, :post, :put, :patch, :delete]
+
+  require 'subdomain'
+  constraints(Subdomain) do
+    get '/' => 'shop#index'
+    get 'category' => 'shop#category'
+    get 'product' => 'shop#product' # change to get 'category/:name'
+    get 'admin' => 'shop#admin'
+  end
+
+
+
+  get 'home/available' => 'home#available?'
+
+  get 'index' => redirect('')
+  get 'users' => redirect('')
+
   devise_for :users
-  resources :users, :only => [:show]
-  get 'home/index'
+  get ':username' => 'users#show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+
+  #constraints subdomain: /.+/ do
+  #  root :to => 'shop#index'
+  #end
+  #constraints subdomain: false do
+  #  root to: 'home#index'
+  #end
   root 'home#index'
 
   # Example of regular route:

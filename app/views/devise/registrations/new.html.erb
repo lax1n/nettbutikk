@@ -7,7 +7,7 @@
         <% if resource.errors[:subdomain].present? %>
             <%= resource.errors[:subdomain].join %>
         <% end %>
-        <%= f.text_field :subdomain, :readonly => true %>
+        <%= f.text_field :subdomain, :readonly => true, :value => flash[:shop_name] %>
       </div>
 
       <div class="field">

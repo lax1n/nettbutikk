@@ -3,14 +3,19 @@
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
   <section class="top-bar-section">
+    <ul class="left">
+      <li class="divider"></li>
+      <li><%= link_to 'Forsiden', root_path unless current_page?(root_path) %></li>
+      <li class="divider"></li>
+      <li><a></a></li>
+    </ul>
     <ul class="right">
       <li class="divider"></li>
       <% if user_signed_in? %>
-          <li><%= link_to 'Min Side', users_show_path %></li>
+          <li><%= link_to 'Min Side', current_user.username %></li>
           <li class="divider"></li>
           <li><%= link_to 'Logg ut', destroy_user_session_path, :method => :delete %></li>
       <% else %>
-          <li><%= link_to 'Registrering', new_user_registration_path %></li>
           <li class="divider"></li>
           <li><%= link_to 'Logg inn', new_user_session_path %></li>
       <% end %>
