@@ -28,16 +28,17 @@
         <li class="divider"></li>
         <% if user_signed_in? %>
             <li class="has-dropdown">
-            <%= link_to 'Min Side', current_user.username %>
+              <%= link_to 'Min Side', current_shop_user.username %>
               <ul class="dropdown">
-                <li><%= link_to 'Instillinger', current_user.username %></li>
+                <li><%= link_to 'Instillinger', current_shop_user.username %></li>
               </ul>
             </li>
             <li class="divider"></li>
-            <li><%= link_to 'Logg ut', destroy_user_session_path, :method => :delete %></li>
+            <li><%= link_to 'Logg ut', destroy_shop_user_session_path, :method => :delete %></li>
         <% else %>
             <li class="divider"></li>
             <li class="active"><a data-dropdown="sign_in">Logg Inn</a></li>
+            <li><%= link_to 'Registrering' %></li>
         <% end %>
         <li class="divider"></li>
       </ul>

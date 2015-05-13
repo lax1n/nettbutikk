@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   require 'subdomain'
   constraints(Subdomain) do
+    devise_for :shop_users
     get '/' => 'shop#index'
     get 'category' => 'shop#category'
     get 'product' => 'shop#product' # change to get 'category/:name'

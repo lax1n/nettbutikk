@@ -1,5 +1,5 @@
 class ShopController < ApplicationController
-  before_filter :exists?
+  before_filter :exists?, :owner
 
   layout 'shop'
   def index
@@ -16,5 +16,9 @@ class ShopController < ApplicationController
 
   def exists?
     redirect_to root_url :host => request.domain unless User.find_by_subdomain(request.subdomain)
+  end
+
+  def owner
+    @owner = User.find_by_subdomain(request.subdomain)
   end
 end

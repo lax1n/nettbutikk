@@ -1,5 +1,32 @@
-<h2>Velkommen til din butikk!</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title><%= content_for?(:title) ? yield(:title) : request.subdomain.capitalize %></title>
+
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "vendor/modernizr" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<%= render 'layouts/shop_header' %>
+<%= render 'layouts/alerts' %>
+<h2>Velkommen til <%= request.subdomain.capitalize %></h2>
 <%= link_to 'Forsiden', index_path %>
 <%= link_to 'Kategorier', category_path %>
 <%= link_to 'Produkt', product_path %>
 <%= link_to 'Nettbutikk.no', root_url(:host => request.domain) %>
+
+<%= yield %>
+
+<footer class="row">
+  <div class="large-12 columns">
+    <hr> <p><%= request.subdomain.concat(" \u00A9 ").concat(@owner.first_name).concat(' ').concat(@owner.last_name).titleize %> 2015</p>
+  </div>
+</footer>
+</body>
+</html>
