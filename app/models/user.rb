@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  validates_format_of :subdomain, :with => /\A[a-zA-Z0-9_]{2,30}\Z/
+  #validates_format_of :subdomain, :with => /\A[a-zA-Z0-9_]{2,30}\Z/
 end

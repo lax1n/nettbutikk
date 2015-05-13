@@ -1,26 +1,53 @@
-<nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="divider"></li>
-      <li><%= link_to 'Forsiden', root_path unless current_page?(root_path) %></li>
-      <li class="divider"></li>
-      <li><a></a></li>
+<div class="contain-to-grid">
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
-    <ul class="right">
-      <li class="divider"></li>
-      <% if user_signed_in? %>
-          <li><%= link_to 'Min Side', current_user.username %></li>
-          <li class="divider"></li>
-          <li><%= link_to 'Logg ut', destroy_user_session_path, :method => :delete %></li>
-      <% else %>
-          <li class="divider"></li>
-          <li><%= link_to 'Logg inn', new_user_session_path %></li>
+    <section class="top-bar-section">
+      <ul class="left">
+        <li class="divider"></li>
+        <li><%= link_to 'Forsiden', root_path unless current_page?(root_path) %></li>
+        <li class="divider"></li>
+        <li><a></a></li>
+      </ul>
+      <ul class="right">
+        <li class="divider"></li>
+        <% if user_signed_in? %>
+            <li><%= link_to 'Min Side', current_user.username %></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Logg ut', destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+            <li class="divider"></li>
+            <li><%= link_to 'Logg inn', new_user_session_path %></li>
+        <% end %>
+        <li class="divider"></li>
+        <li><a data-dropdown="sign_in">Logg Inn</a></li>
+        <li class="divider"></li>
+        <li><a></a></li>
+      </ul>
+    </section>
+  </nav>
+</div>
+<div id="sign_in" class="f-dropdown small content">
+  <div class="row">
+    <div class="large-12 columns">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= f.email_field :email, placeholder: 'E-post', autofocus: true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <%= f.password_field :password, placeholder: 'Passord', autocomplete: "off" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 large-centered columns">
+              <%= f.submit 'Logg inn', class: 'small button' %>
+            </div>
+          </div>
       <% end %>
-      <li class="divider"></li>
-      <li><a></a></li>
-    </ul>
-  </section>
-</nav>
+    </div>
+  </div>
+</div>
