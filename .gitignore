@@ -14,3 +14,9 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+.idea/runConfigurations/Development__nettbutikk.xml
+.idea/runConfigurations/Production__nettbutikk.xml
+.idea/runConfigurations/spec__nettbutikk.xml
+.idea/runConfigurations/test__nettbutikk.xml
+.idea/workspace.xml
