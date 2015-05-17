@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513142807) do
+ActiveRecord::Schema.define(version: 20150516215502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20150513142807) do
   add_index "shop_users", ["email", "subdomain"], name: "index_shop_users_on_email_and_subdomain", unique: true, using: :btree
   add_index "shop_users", ["reset_password_token"], name: "index_shop_users_on_reset_password_token", unique: true, using: :btree
   add_index "shop_users", ["username"], name: "index_shop_users_on_username", unique: true, using: :btree
+
+  create_table "shops", force: true do |t|
+    t.string "name",  default: "",           null: false
+    t.string "title", default: "Shop Title", null: false
+    t.string "owner", default: "John Doe",   null: false
+  end
+
+  add_index "shops", ["name"], name: "index_shops_on_name", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "subdomain",              default: "", null: false

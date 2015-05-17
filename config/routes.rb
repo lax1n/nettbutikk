@@ -13,15 +13,13 @@ Rails.application.routes.draw do
     get 'admin' => 'shop#admin'
   end
 
-
-
-  get 'home/available' => 'home#available?'
-
-  get 'index' => redirect('')
-  get 'users' => redirect('')
-
-  devise_for :users
-  get ':username' => 'users#show'
+  constraints(Domain) do
+    get 'index' => redirect('')
+    get 'users' => redirect('')
+    get 'home/available' => 'home#available?'
+    devise_for :users, :controllers => {:registrations => 'registrations'}
+    get ':username' => 'users#show'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
